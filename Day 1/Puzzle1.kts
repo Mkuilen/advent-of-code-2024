@@ -4,28 +4,28 @@ import java.io.IOException
 import kotlin.math.abs
 
 val path = Paths.get("input.txt")
-var listOne = intArrayOf()
-var listTwo = intArrayOf()
+var leftList = intArrayOf()
+var rightList = intArrayOf()
 val regex = "\\d+".toRegex()
 
 try {
     val lines = Files.readAllLines(path)
     for (line in lines) {
         val numbers = regex.findAll(line).map { it.value }.toList()
-        listOne += numbers[0].toInt()
-        listTwo += numbers[1].toInt()
+        leftList += numbers[0].toInt()
+        rightList += numbers[1].toInt()
     }
 } catch (e: IOException) {
     e.printStackTrace()
 }
 
-listOne.sort()
-listTwo.sort()
+leftList.sort()
+rightList.sort()
 
 var totalDistance = 0
 
-for (i in listOne.indices) {
-    val distance = abs(listOne[i] - listTwo[i])
+for (i in leftList.indices) {
+    val distance = abs(leftList[i] - rightList[i])
     totalDistance += distance
 }
 
